@@ -14,7 +14,7 @@
 image:
   registry: registry.gitlab.com
   image: gitlab-org/gitlab-runner
-  # tag: alpine-v11.6.0
+  tag: alpine-v15.7.0
 
 ## Specify a imagePullPolicy for the main runner deployment
 ## 'Always' if imageTag is 'latest', else set to 'IfNotPresent'
@@ -318,7 +318,7 @@ runners:
     [[runners]]
       [runners.kubernetes]
         namespace = "{{.Release.Namespace}}"
-        image = "ubuntu:20.04"
+        image = "ubuntu:16.04"
 
   ## Which executor should be used
   ##
