@@ -14,7 +14,7 @@
 image:
   registry: registry.gitlab.com
   image: gitlab-org/gitlab-runner
-  tag: ubuntu-v15.7.1
+# tag: ubuntu-v15.7.1
 
 ## Specify a imagePullPolicy for the main runner deployment
 ## 'Always' if imageTag is 'latest', else set to 'IfNotPresent'
@@ -318,7 +318,8 @@ runners:
     [[runners]]
       [runners.kubernetes]
         namespace = "{{.Release.Namespace}}"
-        image = "ubuntu:16.04"
+        image = "arm64v8/clojure"
+        helper_image = "gitlab/gitlab-runner-helper:ubuntu-arm64-v14.10.2"
 
   ## Which executor should be used
   ##
