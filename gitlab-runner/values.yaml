@@ -323,7 +323,7 @@ runners:
 
   ## Which executor should be used
   ##
-  # executor: shell
+  executor: shell
 
   ## Default container image to use for builds when none is specified
   ##
