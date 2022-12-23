@@ -11,10 +11,7 @@
 ##       don't forget to change the securityContext;
 ##       these images run on different user IDs.
 ##
-image:
-  registry: registry.gitlab.com
-  image: gitlab-org/gitlab-runner
-  tag: ubuntu-v13.0.0
+image: registry.gitlab.com/gitlab-org/ci-cd/gitlab-runner-ubi-images/gitlab-runner-ocp:v13.11.0
 
 ## Specify a imagePullPolicy for the main runner deployment
 ## 'Always' if imageTag is 'latest', else set to 'IfNotPresent'
@@ -314,11 +311,19 @@ runners:
   #
   # tpl: https://helm.sh/docs/howto/charts_tips_and_tricks/#using-the-tpl-function
   # runner configuration: https://docs.gitlab.com/runner/configuration/advanced-configuration.html
+
   config: |
-    [[runners]]
-      [runners.kubernetes]
-        namespace = "{{.Release.Namespace}}"
-        image = "ubuntu:18.04"
+     [[runners]]
+        [runners.kubernetes]
+          helper_image = "registry.gitlab.com/gitlab-org/ci-cd/gitlab-runner-ubi-images/gitlab-runner-helper-ocp:x86_64-v13.11.0"
+          [runners.kubernetes.pod_security_context]
+            run_as_non_root = true
+            run_as_user = 59417
+  ##config: |
+    ##[[runners]]
+      ##[runners.kubernetes]
+        ##namespace = "{{.Release.Namespace}}"
+        ##image = "ubuntu:18.04"
     ##helper_image = "gitlab/gitlab-runner-helper:ubuntu-arm64-v14.10.2"
 
   ## Which executor should be used
@@ -576,8 +581,8 @@ runners:
 ## ref: http://kubernetes.io/docs/user-guide/security-context/
 ##
 securityContext:
-  fsGroup: 999
-  runAsUser: 999
+    runAsNonRoot: true
+    runAsUser: 999
 
 ## Configure securitycontext valid for the whole pod
 ## ref: http://kubernetes.io/docs/user-guide/security-context/
