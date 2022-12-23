@@ -576,8 +576,12 @@ runners:
 ## ref: http://kubernetes.io/docs/user-guide/security-context/
 ##
 securityContext:
-  fsGroup: 999
-  runAsUser: 999
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: false
+  runAsNonRoot: true
+  privileged: false
+  capabilities:
+    drop: ["ALL"]
 
 ## Configure securitycontext valid for the whole pod
 ## ref: http://kubernetes.io/docs/user-guide/security-context/
