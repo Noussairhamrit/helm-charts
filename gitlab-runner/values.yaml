@@ -13,7 +13,7 @@
 ##
 image:
   registry: registry.gitlab.com
-  image: gitlab-org/gitlab-runner
+  image: gitlab/gitlab-runner:v13.0.0
 # tag: ubuntu-v15.7.1
 
 ## Specify a imagePullPolicy for the main runner deployment
@@ -576,12 +576,8 @@ runners:
 ## ref: http://kubernetes.io/docs/user-guide/security-context/
 ##
 securityContext:
-  allowPrivilegeEscalation: false
-  readOnlyRootFilesystem: false
-  runAsNonRoot: true
-  privileged: false
-  capabilities:
-    drop: ["ALL"]
+  fsGroup: 999
+  runAsUser: 999
 
 ## Configure securitycontext valid for the whole pod
 ## ref: http://kubernetes.io/docs/user-guide/security-context/
