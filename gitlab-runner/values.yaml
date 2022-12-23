@@ -14,7 +14,7 @@
 image:
   registry: registry.gitlab.com
   image: gitlab/gitlab-runner
-# tag: ubuntu-v15.7.1
+  tag: ubuntu-v13.0.0
 
 ## Specify a imagePullPolicy for the main runner deployment
 ## 'Always' if imageTag is 'latest', else set to 'IfNotPresent'
